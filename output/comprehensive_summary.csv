@@ -1,0 +1,5 @@
+Frequency,Simulation_Duration,GT_Resources,Avg_Duration_Per_Resource,Projected_TTFT_ms,Projected_TPOT_ms,Total_Performance_ms,Performance_vs_1600MHz,Performance_Ranking
+600MHz,"9,741,048","234,844",41.48,1466.7,137.3,1604.0,-62.5%,#4
+1000MHz,"5,844,629","234,844",24.89,880.0,82.4,962.4,-37.5%,#3
+1600MHz,"3,652,893","234,844",15.55,550.0,51.5,601.5,+0.0%,#2
+2000MHz,"2,922,314","234,844",12.44,440.0,41.2,481.2,+25.0%,#1
