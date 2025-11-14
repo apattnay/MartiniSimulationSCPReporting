@@ -217,7 +217,9 @@ class LLMPerformanceProjector:
         
         plt.tight_layout()
         plt.savefig('output/llm_performance_projection.png', dpi=300, bbox_inches='tight')
-        plt.show()
+        plt.savefig('llm_performance_projection.png', dpi=300, bbox_inches='tight')  # Also save to root
+        print("📊 Performance visualization saved to: output/llm_performance_projection.png")
+        plt.close()  # Close instead of show to avoid GUI
         
         return fig
     

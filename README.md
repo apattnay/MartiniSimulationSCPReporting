@@ -5,6 +5,24 @@
 
 A comprehensive analysis tool for Martini simulation results, focusing on GT/* resource analysis and LLM performance projections across different frequency sweeps.
 
+## 📊 Latest Analysis Results (November 2025)
+
+![LLM Performance Projection](llm_performance_projection.png)
+
+### Key Findings:
+- **🏆 Best Performance**: 2000MHz → 481.2ms total response time
+- **📊 Baseline**: 1600MHz → 601.5ms (TTFT: 550ms, TPOT: 51.5ms)  
+- **📈 Performance Range**: 233.3% variation across frequencies
+- **💾 Data Processed**: 939,376 GT/* resources across all frequencies
+
+**Performance Summary:**
+| Frequency | TTFT (ms) | TPOT (ms) | Total (ms) | Performance Change |
+|-----------|-----------|-----------|------------|-------------------|
+| 600MHz    | 1,466.7   | 137.3     | 1,604.0    | -62.5% ⚠️        |
+| 1000MHz   | 880.0     | 82.4      | 962.4      | -37.5% ⚠️        |
+| 1600MHz   | 550.0     | 51.5      | 601.5      | Baseline 📊      |
+| 2000MHz   | 440.0     | 41.2      | 481.2      | +25.0% 🚀       |
+
 ## 🎯 Overview
 
 This repository contains tools to analyze simulation_results.csv files from multiple frequency directories (600MHz, 1000MHz, 1600MHz, 2000MHz), filter GT/* resources, and project LLM token generation performance (TTFT + TPOT).
@@ -122,20 +140,36 @@ The tool expects CSV files with these columns:
 - **DURATION**: Numeric duration values to be summed and analyzed
 - **TRANSITION**: Transition types for grouping and analysis
 
-## Output Files
+## 📁 Output Files
 
-The tool generates several output files in the `output/` directory:
+The tool generates comprehensive analysis results in the `output/` directory:
 
-### Summary Files
-- `frequency_sweep_summary.xlsx/csv`: Overall summary across all frequencies
+### 📊 Latest Generated Files (November 2025)
+```
+output/
+├── universal_analysis_summary.xlsx     # Main analysis results
+├── llm_performance_projections.xlsx    # LLM performance data
+├── 600_transitions.xlsx                # Detailed 600MHz analysis  
+├── 1000_transitions.xlsx               # Detailed 1000MHz analysis
+├── 1600_transitions.xlsx               # Detailed 1600MHz analysis
+├── 2000_transitions.xlsx               # Detailed 2000MHz analysis
+├── llm_performance_projection.png      # Main performance chart
+└── llm_performance_simple.png          # Simplified performance view
+```
 
-### Per-Frequency Files
-- `{frequency}_transition_analysis.xlsx/csv`: Detailed transition analysis
-- `{frequency}_filtered_data.xlsx/csv`: Raw filtered data for each frequency
+### 📈 Analysis Summary from Latest Run
+- **Total GT Resources**: 939,376 across all frequencies
+- **Total Effort**: 22,160,883.37 units
+- **Data Sources**: All frequencies loaded from network paths
+- **Analysis Coverage**: 234,844 GT resources per frequency (60.4% of total data)
 
-### Visualizations
-- `duration_by_frequency.png`: Bar chart comparing total durations
-- `{frequency}_top_transitions.png`: Top transitions by duration for each frequency
+### 🔍 Per-Frequency Results
+| Frequency | GT Resources | Total Duration | Avg Duration | Top Transition Duration |
+|-----------|--------------|----------------|--------------|------------------------|
+| 600MHz    | 234,844      | 9,741,047.63   | 41.48        | 8,035.52              |
+| 1000MHz   | 234,844      | 5,844,628.58   | 24.89        | 4,821.31              |
+| 1600MHz   | 234,844      | 3,652,892.86   | 15.55        | 3,013.32              |
+| 2000MHz   | 234,844      | 2,922,314.29   | 12.44        | 2,410.66              |
 
 ## Analysis Details
 
