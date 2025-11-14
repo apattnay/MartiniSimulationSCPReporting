@@ -37,9 +37,33 @@ The tool expects simulation_results.csv files in these network locations:
 
 ### Quick Start
 
-Run the complete analysis:
+Run the complete analysis with ZIP support:
 ```powershell
-python simulation_analyzer.py
+# Supports both network paths and ZIP archives
+python auto_analyzer_zip.py
+
+# Test network connectivity first (optional)
+python test_connectivity.py
+
+# Generate performance projections
+python performance_projector.py
+
+# Create visualizations
+python simple_chart.py
+
+# Generate comprehensive summary
+python create_summary.py
+```
+
+### Working with Archived Data
+
+The repository includes compressed CSV source data (85.7% space savings):
+```powershell
+# Extract ZIP files manually
+python extract_data.py
+
+# Create new ZIP archives from network sources
+python archive_csv_files.py
 ```
 
 ### Custom Analysis
