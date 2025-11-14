@@ -37,9 +37,18 @@ The tool expects simulation_results.csv files in these network locations:
 
 ### Quick Start
 
-Run the complete analysis with ZIP support:
+#### 🚀 **Recommended: Universal Analyzer**
 ```powershell
-# Supports both network paths and ZIP archives
+# Smart data source detection with automatic fallback
+python universal_analyzer.py
+
+# Check data source status
+python config_manager.py
+```
+
+#### 🔧 **Alternative Methods**
+```powershell
+# Original ZIP-enabled analyzer
 python auto_analyzer_zip.py
 
 # Test network connectivity first (optional)
@@ -55,16 +64,32 @@ python simple_chart.py
 python create_summary.py
 ```
 
-### Working with Archived Data
+### 🔧 **Flexible Data Source Configuration**
 
-The repository includes compressed CSV source data (85.7% space savings):
+The tools automatically detect and use multiple data source types:
+
 ```powershell
-# Extract ZIP files manually
-python extract_data.py
+# 1. Check what data sources are available
+python config_manager.py
 
-# Create new ZIP archives from network sources
+# 2. Add custom CSV locations
+python -c "from config_manager import add_custom_csv_location; add_custom_csv_location('600MHz', '/your/path/data.csv')"
+
+# 3. Set local CSV directory
+python -c "from config_manager import set_csv_directory; set_csv_directory('/your/csv/folder')"
+
+# 4. Create ZIP archives from network sources
 python archive_csv_files.py
+
+# 5. Extract ZIP files manually (usually automatic)
+python extract_data.py
 ```
+
+**📋 Supported Data Sources** (automatic priority order):
+1. **🌐 Network paths** - Original Samba network locations
+2. **📦 ZIP archives** - Compressed local files (auto-extraction)
+3. **📁 Local CSV directory** - Organized local files
+4. **🔧 Custom paths** - User-defined locations
 
 ### Custom Analysis
 

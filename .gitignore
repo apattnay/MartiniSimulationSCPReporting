@@ -179,6 +179,12 @@ ehthumbs.db
 Desktop.ini
 $RECYCLE.BIN/
 
+# Configuration files (user-specific)
+config.json
+
+# Temporary extraction directory
+temp_data/
+
 # Large output files (optional - comment out if you want to include sample outputs)
 # output/*.xlsx
 # output/*.csv

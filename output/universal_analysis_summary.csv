@@ -1,0 +1,5 @@
+Frequency,Total_Rows,GT_Rows,GT_Percentage,total_duration,avg_duration,median_duration,max_duration,min_duration,std_duration,count,Unique_Transitions,Data_Source,File_Path
+600MHz,388502,234844,60.44859485922852,9741047.633185,41.47880138809167,13.013333,8035.52,0.013333,67.89468908240643,234844,234844,Network,\\samba.zsc3.intel.com\nfs\site\disks\fsintel\disk_001\apattnay\martini_wa\llama4-8tp-600Mhz\simulation_results.csv
+1000MHz,388502,234844,60.44859485922852,5844628.58,24.887280833233977,7.808,4821.312,0.008,40.736813448521666,234844,234844,Network,\\samba.zsc3.intel.com\nfs\site\disks\fsintel\disk_001\apattnay\martini_wa\llama4-8tp-1000Mhz\simulation_results.csv
+1600MHz,388502,234844,60.44859485922852,3652892.8625,15.554550520771235,4.88,3013.32,0.005,25.46050840532604,234844,234844,Network,\\samba.zsc3.intel.com\nfs\site\disks\fsintel\disk_001\apattnay\martini_wa\llama4-8tp-1600Mhz\simulation_results.csv
+2000MHz,388502,234844,60.44859485922852,2922314.29,12.443640416616988,3.904,2410.656,0.004,20.368406724260833,234844,234844,Network,\\samba.zsc3.intel.com\nfs\site\disks\fsintel\disk_001\apattnay\martini_wa\llama4-8tp-2000Mhz\simulation_results.csv
