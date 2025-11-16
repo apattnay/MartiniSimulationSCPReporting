@@ -115,23 +115,23 @@ class LLMPerformanceProjector:
         # Create figure with subplots
         fig = plt.figure(figsize=(20, 15))
         
-        # 1. Total Performance Comparison
-        ax1 = plt.subplot(2, 3, 1)
-        x_pos = range(len(df))
-        bars = plt.bar(x_pos, df['projected_total'], alpha=0.7, color='skyblue', label='Simulation-based')
-        plt.bar(x_pos, df['theoretical_total'], alpha=0.7, color='orange', label='Frequency-based', width=0.6)
+        # # 1. Total Performance Comparison
+        # ax1 = plt.subplot(2, 3, 1)
+        # x_pos = range(len(df))
+        # bars = plt.bar(x_pos, df['projected_total'], alpha=0.7, color='skyblue', label='Simulation-based')
+        # plt.bar(x_pos, df['theoretical_total'], alpha=0.7, color='orange', label='Frequency-based', width=0.6)
         
-        # Add value labels on bars
-        for i, (sim_val, theo_val) in enumerate(zip(df['projected_total'], df['theoretical_total'])):
-            plt.text(i, sim_val + 10, f'{sim_val:.1f}ms', ha='center', va='bottom', fontweight='bold')
-            plt.text(i, theo_val + 10, f'{theo_val:.1f}ms', ha='center', va='bottom', fontweight='bold', color='orange')
+        # # Add value labels on bars
+        # for i, (sim_val, theo_val) in enumerate(zip(df['projected_total'], df['theoretical_total'])):
+        #     plt.text(i, sim_val + 10, f'{sim_val:.1f}ms', ha='center', va='bottom', fontweight='bold')
+        #     plt.text(i, theo_val + 10, f'{theo_val:.1f}ms', ha='center', va='bottom', fontweight='bold', color='orange')
         
-        plt.title('Total LLM Performance (TTFT + TPOT)', fontsize=14, fontweight='bold')
-        plt.xlabel('Frequency')
-        plt.ylabel('Total Time (ms)')
-        plt.xticks(x_pos, df['frequency_str'])
-        plt.legend()
-        plt.grid(axis='y', alpha=0.3)
+        # plt.title('Total LLM Performance (TTFT + TPOT)', fontsize=14, fontweight='bold')
+        # plt.xlabel('Frequency')
+        # plt.ylabel('Total Time (ms)')
+        # plt.xticks(x_pos, df['frequency_str'])
+        # plt.legend()
+        # plt.grid(axis='y', alpha=0.3)
         
         # 2. TTFT vs TPOT Breakdown
         ax2 = plt.subplot(2, 3, 2)
@@ -148,39 +148,39 @@ class LLMPerformanceProjector:
         plt.legend()
         plt.grid(axis='y', alpha=0.3)
         
-        # 3. Performance Improvement Chart
-        ax3 = plt.subplot(2, 3, 3)
-        colors = ['red' if x < 0 else 'green' for x in df['performance_improvement']]
-        bars = plt.bar(range(len(df)), df['performance_improvement'], color=colors, alpha=0.7)
+        # # 3. Performance Improvement Chart
+        # ax3 = plt.subplot(2, 3, 3)
+        # colors = ['red' if x < 0 else 'green' for x in df['performance_improvement']]
+        # bars = plt.bar(range(len(df)), df['performance_improvement'], color=colors, alpha=0.7)
         
-        # Add value labels
-        for i, val in enumerate(df['performance_improvement']):
-            plt.text(i, val + (1 if val > 0 else -1), f'{val:+.1f}%', ha='center', 
-                    va='bottom' if val > 0 else 'top', fontweight='bold')
+        # # Add value labels
+        # for i, val in enumerate(df['performance_improvement']):
+        #     plt.text(i, val + (1 if val > 0 else -1), f'{val:+.1f}%', ha='center', 
+        #             va='bottom' if val > 0 else 'top', fontweight='bold')
         
-        plt.title('Performance Change vs 1600MHz Baseline', fontsize=14, fontweight='bold')
-        plt.xlabel('Frequency')
-        plt.ylabel('Performance Change (%)')
-        plt.xticks(range(len(df)), df['frequency_str'])
-        plt.axhline(y=0, color='black', linestyle='-', alpha=0.5)
-        plt.grid(axis='y', alpha=0.3)
+        # plt.title('Performance Change vs 1600MHz Baseline', fontsize=14, fontweight='bold')
+        # plt.xlabel('Frequency')
+        # plt.ylabel('Performance Change (%)')
+        # plt.xticks(range(len(df)), df['frequency_str'])
+        # plt.axhline(y=0, color='black', linestyle='-', alpha=0.5)
+        # plt.grid(axis='y', alpha=0.3)
         
-        # 4. Simulation Duration vs Performance
-        ax4 = plt.subplot(2, 3, 4)
-        scatter = plt.scatter(df['sim_duration'], df['projected_total'], 
-                            c=df['frequency'], s=200, alpha=0.7, cmap='viridis')
+        # # 4. Simulation Duration vs Performance
+        # ax4 = plt.subplot(2, 3, 4)
+        # scatter = plt.scatter(df['sim_duration'], df['projected_total'], 
+        #                     c=df['frequency'], s=200, alpha=0.7, cmap='viridis')
         
-        # Add frequency labels
-        for i, row in df.iterrows():
-            plt.annotate(row['frequency_str'], 
-                        (row['sim_duration'], row['projected_total']),
-                        xytext=(5, 5), textcoords='offset points', fontweight='bold')
+        # # Add frequency labels
+        # for i, row in df.iterrows():
+        #     plt.annotate(row['frequency_str'], 
+        #                 (row['sim_duration'], row['projected_total']),
+        #                 xytext=(5, 5), textcoords='offset points', fontweight='bold')
         
-        plt.title('Simulation Duration vs Performance', fontsize=14, fontweight='bold')
-        plt.xlabel('Simulation Duration')
-        plt.ylabel('Total Performance (ms)')
-        plt.colorbar(scatter, label='Frequency (MHz)')
-        plt.grid(alpha=0.3)
+        # plt.title('Simulation Duration vs Performance', fontsize=14, fontweight='bold')
+        # plt.xlabel('Simulation Duration')
+        # plt.ylabel('Total Performance (ms)')
+        # plt.colorbar(scatter, label='Frequency (MHz)')
+        # plt.grid(alpha=0.3)
         
         # 5. Frequency vs Performance Trend
         ax5 = plt.subplot(2, 3, 5)
