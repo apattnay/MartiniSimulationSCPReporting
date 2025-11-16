@@ -5,23 +5,28 @@
 
 A comprehensive analysis tool for Martini simulation results, focusing on GT/* resource analysis and LLM performance projections across different frequency sweeps.
 
-## 📊 Latest Analysis Results (November 2025)
+## 📊 Latest Analysis Results (November 15, 2025)
 
 ![LLM Performance Projection](llm_performance_projection.png)
 
-### Key Findings:
-- **🏆 Best Performance**: 2000MHz → 481.2ms total response time
-- **📊 Baseline**: 1600MHz → 601.5ms (TTFT: 550ms, TPOT: 51.5ms)  
+### 🎯 Updated Performance Measurements:
+- **🔧 Hardware Configuration**: 112 input tokens, 2 output tokens (114 total)
+- **📊 Baseline (1600MHz)**: TTFT: 8.336s, TPOT: 53.46ms → **13.59 tokens/sec**
+- **🏆 Best Performance**: 2000MHz → **16.99 tokens/sec** (+25.0% vs baseline)
+- **⚠️ Lowest Performance**: 600MHz → **5.10 tokens/sec** (-62.5% vs baseline)
 - **📈 Performance Range**: 233.3% variation across frequencies
 - **💾 Data Processed**: 939,376 GT/* resources across all frequencies
 
-**Performance Summary:**
-| Frequency | TTFT (ms) | TPOT (ms) | Total (ms) | Performance Change |
-|-----------|-----------|-----------|------------|-------------------|
-| 600MHz    | 1,466.7   | 137.3     | 1,604.0    | -62.5% ⚠️        |
-| 1000MHz   | 880.0     | 82.4      | 962.4      | -37.5% ⚠️        |
-| 1600MHz   | 550.0     | 51.5      | 601.5      | Baseline 📊      |
-| 2000MHz   | 440.0     | 41.2      | 481.2      | +25.0% 🚀       |
+**Token Generation Speed (TGS) Summary:**
+| Frequency | TTFT (s) | TPOT (ms) | Total (s) | TGS (tok/s) | Output Rate (tok/s) | Performance Change |
+|-----------|----------|-----------|-----------|-------------|--------------------|--------------------|
+| 600MHz    | 22.23    | 142.56    | 22.37     | **5.10**    | 14.03              | -62.5% ⚠️         |
+| 1000MHz   | 13.34    | 85.54     | 13.42     | **8.49**    | 23.38              | -37.5% ⚠️         |
+| 1600MHz   | 8.34     | 53.46     | 8.39      | **13.59**   | 37.41              | Baseline 📊       |
+| 2000MHz   | 6.67     | 42.77     | 6.71      | **16.99**   | 46.76              | +25.0% 🚀        |
+
+> **📋 Note**: TGS = Total Tokens per Second, Output Rate = Generation phase tokens per second  
+> See [TGS_CALCULATION_EXPLANATION.md](TGS_CALCULATION_EXPLANATION.md) for detailed methodology
 
 ## 🎯 Overview
 

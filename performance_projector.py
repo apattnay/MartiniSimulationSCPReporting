@@ -12,11 +12,16 @@ from pathlib import Path
 
 class LLMPerformanceProjector:
     def __init__(self):
-        # Baseline performance at 1600MHz
+        # Baseline performance at 1600MHz (Updated Nov 15, 2025)
         self.baseline_freq = 1600
-        self.baseline_ttft = 550  # ms
-        self.baseline_tpot = 51.5  # ms
-        self.baseline_total = self.baseline_ttft + self.baseline_tpot  # 601.5 ms
+        self.baseline_ttft = 8336  # ms (8.336 seconds)
+        self.baseline_tpot = 53.46  # ms
+        self.baseline_total = self.baseline_ttft + self.baseline_tpot  # 8389.46 ms
+        
+        # Token configuration for TGS calculation
+        self.input_tokens = 112
+        self.output_tokens = 2
+        self.total_tokens = self.input_tokens + self.output_tokens  # 114 tokens
         
         # Load simulation results
         self.load_simulation_data()
@@ -69,6 +74,19 @@ class LLMPerformanceProjector:
             theoretical_tpot = self.baseline_tpot * freq_ratio
             theoretical_total = theoretical_ttft + theoretical_tpot
             
+            # Calculate Token Generation Speed (TGS) - tokens per second
+            # For simulation-based projections
+            projected_total_seconds = projected_total / 1000
+            projected_tgs = self.total_tokens / projected_total_seconds if projected_total_seconds > 0 else 0
+            
+            # For theoretical projections  
+            theoretical_total_seconds = theoretical_total / 1000
+            theoretical_tgs = self.total_tokens / theoretical_total_seconds if theoretical_total_seconds > 0 else 0
+            
+            # Calculate output token rate (tokens per second for generation phase)
+            projected_tpot_seconds = projected_tpot / 1000
+            output_token_rate = self.output_tokens / projected_tpot_seconds if projected_tpot_seconds > 0 else 0
+            
             results.append({
                 'frequency': freq_num,
                 'frequency_str': freq_str,
@@ -80,6 +98,9 @@ class LLMPerformanceProjector:
                 'theoretical_ttft': theoretical_ttft,
                 'theoretical_tpot': theoretical_tpot,
                 'theoretical_total': theoretical_total,
+                'projected_tgs': projected_tgs,
+                'theoretical_tgs': theoretical_tgs,
+                'output_token_rate': output_token_rate,
                 'performance_improvement': (self.baseline_total / projected_total - 1) * 100
             })
         
@@ -189,14 +210,15 @@ class LLMPerformanceProjector:
         for _, row in df.iterrows():
             table_data.append([
                 row['frequency_str'],
-                f"{row['projected_ttft']:.1f}",
+                f"{row['projected_ttft']:.0f}",
                 f"{row['projected_tpot']:.1f}",
-                f"{row['projected_total']:.1f}",
+                f"{row['projected_total']:.0f}",
+                f"{row['projected_tgs']:.2f}",
                 f"{row['performance_improvement']:+.1f}%"
             ])
         
         table = ax6.table(cellText=table_data,
-                         colLabels=['Frequency', 'TTFT (ms)', 'TPOT (ms)', 'Total (ms)', 'vs 1600MHz'],
+                         colLabels=['Frequency', 'TTFT (ms)', 'TPOT (ms)', 'Total (ms)', 'TGS (tok/s)', 'vs 1600MHz'],
                          cellLoc='center',
                          loc='center')
         table.auto_set_font_size(False)
@@ -205,7 +227,7 @@ class LLMPerformanceProjector:
         
         # Style the table
         for i in range(len(df) + 1):
-            for j in range(5):
+            for j in range(6):  # Updated for 6 columns
                 cell = table[(i, j)]
                 if i == 0:  # Header
                     cell.set_facecolor('#4CAF50')
@@ -228,14 +250,21 @@ class LLMPerformanceProjector:
         print("\n" + "="*80)
         print("🚀 LLM PERFORMANCE PROJECTION REPORT")
         print("="*80)
-        print(f"📊 Baseline: 1600MHz → TTFT: {self.baseline_ttft}ms, TPOT: {self.baseline_tpot}ms, Total: {self.baseline_total}ms")
+        print(f"📊 Baseline: 1600MHz → TTFT: {self.baseline_ttft:.1f}ms ({self.baseline_ttft/1000:.3f}s), TPOT: {self.baseline_tpot:.2f}ms")
+        print(f"📊 Token Configuration: {self.input_tokens} input + {self.output_tokens} output = {self.total_tokens} total tokens")
+        
+        # Calculate baseline TGS
+        baseline_tgs = self.total_tokens / (self.baseline_total / 1000)
+        baseline_output_rate = self.output_tokens / (self.baseline_tpot / 1000)
+        print(f"📊 Baseline TGS: {baseline_tgs:.2f} tokens/sec | Output Rate: {baseline_output_rate:.2f} tokens/sec")
+        
         print("\n📈 PROJECTED PERFORMANCE ACROSS FREQUENCIES:")
-        print("-"*80)
+        print("-"*120)
         
         for _, row in df.iterrows():
             improvement = "🚀" if row['performance_improvement'] > 0 else "⚠️" if row['performance_improvement'] < -10 else "📊"
-            print(f"{improvement} {row['frequency_str']:>8}: TTFT={row['projected_ttft']:6.1f}ms | TPOT={row['projected_tpot']:5.1f}ms | "
-                  f"Total={row['projected_total']:6.1f}ms | Change: {row['performance_improvement']:+5.1f}%")
+            print(f"{improvement} {row['frequency_str']:>8}: TTFT={row['projected_ttft']:7.1f}ms | TPOT={row['projected_tpot']:6.2f}ms | "
+                  f"Total={row['projected_total']:7.1f}ms | TGS={row['projected_tgs']:5.2f} tok/s | Change: {row['performance_improvement']:+5.1f}%")
         
         # Find best and worst performers
         best_freq = df.loc[df['projected_total'].idxmin()]
