@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Xeon HPC/AI Report Interactive</title>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<style>
+  body { font-family: Arial, sans-serif; margin: 20px; }
+  h1, h2 { color: #2a3f5f; }
+  nav { margin-bottom: 20px; }
+  nav a { margin-right: 15px; text-decoration: none; color: #0078d4; font-weight: bold; }
+  .section { margin-bottom: 40px; }
+  .collapsible { background-color: #0078d4; color: white; cursor: pointer; padding: 10px; width: 100%; border: none; text-align: left; font-size: 18px; }
+  .content { display: none; padding: 10px; border: 1px solid #ccc; }
+  table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+  th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+  th { background-color: #f4f4f4; }
+</style>
+</head>
+<body>
+
+<h1>Intel Xeon HPC/AI Interactive Report</h1>
+<p>This report provides a comprehensive view of Intel Xeon families, ARM vs x86 vs GPU comparisons, and HPC/AI roadmap through 2030.</p>
+
+<nav>
+  <a href="#xeon-table">Xeon Families Table</a>
+  <a href="#visuals">Visuals</a>
+  <a href="#insights">Insights</a>
+  <a href="#competitive">Competitive Analysis</a>
+</nav>
+
+<div id="xeon-table" class="section">
+<h2>Xeon Family Specification Table</h2>
+<table>
+<tr><th>Family / Series</th><th>Classification</th><th>Core Range</th><th>TDP</th><th>Memory Channels</th><th>Target Workloads</th></tr>
+<tr><td>LCC</td><td>Core Count-Based</td><td>16–32</td><td>150–225W</td><td>8</td><td>Entry-level servers</td></tr>
+<tr><td>HCC</td><td>Core Count-Based</td><td>32–64</td><td>300–350W</td><td>8</td><td>Balanced enterprise workloads</td></tr>
+<tr><td>XCC</td><td>Core Count-Based</td><td>64–96</td><td>350–500W</td><td>12</td><td>HPC, virtualization, AI inference</td></tr>
+<tr><td>UCC</td><td>Core Count-Based</td><td>96–128</td><td>500W</td><td>12</td><td>Flagship Granite Rapids for AI/HPC</td></tr>
+<tr><td>AP</td><td>Performance-Based</td><td>72–128</td><td>500–650W</td><td>12–16</td><td>HPC, AI training, liquid cooling</td></tr>
+<tr><td>SP</td><td>Performance-Based</td><td>16–64</td><td>150–350W</td><td>8–12</td><td>General-purpose enterprise workloads</td></tr>
+<tr><td>HD</td><td>Performance-Based</td><td>Up to 192</td><td>500W+</td><td>16</td><td>Telecom, hyperscale</td></tr>
+<tr><td>Sierra Forest</td><td>Efficiency-Based</td><td>Up to 288 E-cores</td><td>Power-efficient</td><td>12</td><td>Cloud-native workloads</td></tr>
+<tr><td>Clearwater Forest</td><td>Efficiency-Based</td><td>Up to 288 E-cores</td><td>Power-efficient</td><td>12</td><td>Hyperscale, energy efficiency</td></tr>
+<tr><td>Xeon D-Series</td><td>Specialized</td><td>4–20</td><td>Low-power</td><td>4–6</td><td>Edge computing</td></tr>
+<tr><td>Xeon E-Series</td><td>Specialized</td><td>4–8</td><td>Low-power</td><td>2–4</td><td>Entry-level servers</td></tr>
+<tr><td>Xeon W-Series</td><td>Specialized</td><td>8–56</td><td>150–350W</td><td>4–8</td><td>Workstations</td></tr>
+</table>
+</div>
+
+<div id="visuals" class="section">
+<h2>Visuals</h2>
+
+<!-- <button class="collapsible">Xeon Family Matrix</button>
+<div class="content">
+<div id="xeon-matrix-chart" style="width:1%;max-width:900px;height:500px;"></div>
+</div> -->
+
+<button class="collapsible">ARM vs x86 vs GPU Comparison (Interactive)</button>
+<div class="content">
+<div id="comparison-chart" style="width:100%;max-width:800px;height:500px;"></div>
+</div>
+
+<button class="collapsible">HPC/AI Roadmap (Interactive)</button>
+<div class="content">
+<div id="roadmap-chart" style="width:100%;max-width:900px;height:500px;"></div>
+</div>
+</div>
+
+<div id="insights" class="section">
+<h2>Insights on ARM’s Future in HPC/AI</h2>
+<p>ARM is projected to improve vector capabilities (SVE2), integrate HBM, and enhance interconnects by 2028, making it competitive for HPC workloads. By 2030, ARM could reach 60 TFLOPS per socket with 0.95 Perf/Watt, challenging x86 in many areas.</p>
+</div>
+
+<div id="competitive" class="section">
+<h2>Competitive Analysis</h2>
+<p>Intel Xeon remains dominant for HPC and AI training due to ecosystem maturity and memory bandwidth. AMD EPYC competes strongly in core density and efficiency. ARM leads in energy efficiency and cloud-native workloads, while GPUs dominate AI training performance.</p>
+</div>
+
+<script>
+  var xeonMatrixData = [{
+    type: 'table',
+    header: {
+      values: [["Family-/-Series"], ["Classification"], ["Core-Range"], ["TDP"], ["Memory-Channels"], ["Target-Workloads"]],
+      align: "center",
+      line: {width: 1, color: 'black'},
+      fill: {color: '#0078d4'},
+      font: {family: "Arial", size: 14, color: "white"}
+    },
+    cells: {
+      values: [
+        ["LCC", "HCC", "XCC", "UCC", "AP", "SP", "HD", "Sierra-Forest", "Clearwater-Forest", "Xeon-D-Series", "Xeon-E-Series", "Xeon-W-Series"],
+        ["Core_Count-Based", "Core_Count-Based", "Core_Count-Based", "Core_Count-Based", "Performance-Based", "Performance-Based", "Performance-Based", "Efficiency-Based", "Efficiency-Based", "Specialized", "Specialized", "Specialized"],
+        ["16–32", "32–64", "64–96", "96–128", "72–128", "16–64", "Up_to_192", "Up_to_288_E-cores", "Up_to_288_E-cores", "4–20", "4–8", "8–56"],
+        ["150–225W", "300–350W", "350–500W", "500W", "500–650W", "150–350W", "500W+", "Power-efficient", "Power-efficient", "Low-power", "Low-power", "150–350W"],
+        ["8", "8", "12", "12", "12–16", "8–12", "16", "12", "12", "4–6", "2–4", "4–8"],
+        ["Entry-level_servers", "Enterprise_workloads", "HPC,_AI_inference", "AI_/HPC_flagship", "HPC,_AI_training", "General-purpose_workloads", "Telecom,_hyperscale", "Cloud-native_workloads", "Hyperscale_efficiency", "Edge_computing", "Entry-level_servers", "Workstations"]
+      ],
+      align: "center",
+      line: {color: "black", width: 1},
+      fill: {color: ['#f9f9f9', '#ffffff']},
+      font: {family: "Arial", size: 12, color: ["black"]}
+    }
+  }];
+
+  Plotly.newPlot('xeon-matrix-chart', xeonMatrixData);
+// Collapsible sections
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+
+// Plotly Chart: ARM vs x86 vs GPU Comparison
+var comparisonData = [
+  { marker: { color: "green" }, name: "ARM", x: ["Performance (TFLOPS)", "Efficiency (Perf/Watt)", "Ecosystem Maturity"], y: [50, 0.8, 6], type: "bar" },
+  { marker: { color: "blue" }, name: "x86", x: ["Performance (TFLOPS)", "Efficiency (Perf/Watt)", "Ecosystem Maturity"], y: [70, 0.6, 9], type: "bar" },
+  { marker: { color: "orange" }, name: "GPU", x: ["Performance (TFLOPS)", "Efficiency (Perf/Watt)", "Ecosystem Maturity"], y: [300, 0.5, 8], type: "bar" }
+];
+var comparisonLayout = {
+  title: "ARM vs x86 vs GPU in HPC and AI Workloads",
+  xaxis: { title: "Metrics" },
+  yaxis: { title: "Values (TFLOPS / Perf/Watt / Qualitative Score)" },
+  barmode: "group",
+  legend: { title: { text: "Architecture" } }
+};
+Plotly.newPlot('comparison-chart', comparisonData, comparisonLayout);
+
+// Plotly Chart: HPC/AI Roadmap
+var roadmapData = [
+  { x: [2024, 2026, 2028, 2030], y: [20, 35, 50, 60], mode: 'lines+markers+text', name: 'ARM', text: ['20 TFLOPS', '35 TFLOPS', '50 TFLOPS', '60 TFLOPS'], textposition: 'top center', line: { color: 'green', width: 3 }, marker: { size: 10 } },
+  { x: [2024, 2026, 2028, 2030], y: [40, 70, 90, 100], mode: 'lines+markers+text', name: 'x86', text: ['40 TFLOPS', '70 TFLOPS', '90 TFLOPS', '100 TFLOPS'], textposition: 'top center', line: { color: 'blue', width: 3 }, marker: { size: 10 } },
+  { x: [2024, 2026, 2028, 2030], y: [150, 220, 280, 350], mode: 'lines+markers+text', name: 'GPU', text: ['150 TFLOPS', '220 TFLOPS', '280 TFLOPS', '350 TFLOPS'], textposition: 'top center', line: { color: 'orange', width: 3 }, marker: { size: 10 } }
+];
+var roadmapLayout = {
+  title: 'HPC/AI Performance Roadmap (2024–2030)',
+  xaxis: { title: 'Year', tickmode: 'linear', dtick: 2 },
+  yaxis: { title: 'Performance (TFLOPS)', range: [0, 400] },
+  legend: { title: { text: 'Architecture' } },
+  template: 'plotly_white'
+};
+Plotly.newPlot('roadmap-chart', roadmapData, roadmapLayout);
+</script>
+
+</body>
+</html>
