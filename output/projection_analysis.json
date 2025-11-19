@@ -1,0 +1,33 @@
+{
+  "summary_statistics": {
+    "hardware_calibrated": {
+      "mean_tgs": 117.59421954956855,
+      "min_tgs": 54.274255176723955,
+      "max_tgs": 180.91418392241314,
+      "std_tgs": 56.24850565081911,
+      "range_tgs": 126.63992874568919
+    },
+    "pure_simulation": {
+      "mean_tgs": 101.91495886102261,
+      "min_tgs": 47.0376733211056,
+      "max_tgs": 156.79224440129775,
+      "std_tgs": 48.74868987024612,
+      "range_tgs": 109.75457108019215
+    },
+    "hybrid_correlation": {
+      "mean_tgs": 39.022231008529936,
+      "min_tgs": 18.019228842627626,
+      "max_tgs": 60.02438485591912,
+      "std_tgs": 18.65683390581167,
+      "range_tgs": 42.0051560132915
+    }
+  },
+  "approach_comparison": {},
+  "frequency_trends": {},
+  "recommendations": [
+    "Most conservative estimate: hybrid_correlation (avg: 39.02 tok/s)",
+    "Most optimistic estimate: hardware_calibrated (avg: 117.59 tok/s)",
+    "Range between approaches: 78.57 tok/s",
+    "Hybrid approach recommended for balanced accuracy using both hardware and simulation data"
+  ]
+}

@@ -1,0 +1,167 @@
+{
+  "hardware_settings": {
+    "current_hardware": {
+      "name": "PVC",
+      "description": "Ponte Vecchio Current Generation", 
+      "baseline_measurements": {
+        "ttft_ms": 8336,
+        "tpot_ms": 53.46,
+        "baseline_frequency": 1600,
+        "tokens_input": 112,
+        "tokens_output": 2
+      },
+      "improvement_factors": {
+        "xecore_compute": {
+          "value": 0.375,
+          "description": "35-40% faster compute (time ratio - lower is better)",
+          "applies_to": ["compute_tasks"],
+          "configurable": true
+        },
+        "hbm_bandwidth": {
+          "value": 6.5,
+          "description": "6-7x higher memory bandwidth (throughput multiplier)",
+          "applies_to": ["memory_tasks"],
+          "configurable": true
+        },
+        "fabrication_process": {
+          "value": 0.75,
+          "description": "25% performance gain from process improvement (time ratio)",
+          "applies_to": ["all_tasks"],
+          "configurable": true
+        },
+        "communication": {
+          "bandwidth_improvement": {
+            "value": 12.5,
+            "description": "12x communication bandwidth improvement"
+          },
+          "latency_improvement": {
+            "value": 150,
+            "description": "150x lower communication latency"
+          },
+          "applies_to": ["communication_tasks"],
+          "configurable": true
+        }
+      }      
+    },
+    "future_hardware": {
+      "name": "JGS",
+      "description": "Next Generation Hardware (Jaguar Shores)",
+      "improvement_factors": {
+        "xecore_compute": {
+          "value": 0.375,
+          "description": "35-40% faster compute (time ratio - lower is better)",
+          "applies_to": ["compute_tasks"],
+          "configurable": true
+        },
+        "hbm_bandwidth": {
+          "value": 6.5,
+          "description": "6-7x higher memory bandwidth (throughput multiplier)",
+          "applies_to": ["memory_tasks"],
+          "configurable": true
+        },
+        "fabrication_process": {
+          "value": 0.75,
+          "description": "25% performance gain from process improvement (time ratio)",
+          "applies_to": ["all_tasks"],
+          "configurable": true
+        },
+        "communication": {
+          "bandwidth_improvement": {
+            "value": 12.5,
+            "description": "12x communication bandwidth improvement"
+          },
+          "latency_improvement": {
+            "value": 150,
+            "description": "150x lower communication latency"
+          },
+          "applies_to": ["communication_tasks"],
+          "configurable": true
+        }
+      }
+    }
+  },
+  "calculation_settings": {
+    "enabled_approaches": [
+      "hardware_calibrated",
+      "pure_simulation", 
+      "hybrid_correlation"
+    ],
+    "execution_options": {
+      "run_single_approach": false,
+      "run_all_approaches": true,
+      "default_single_approach": "hybrid_correlation"
+    },
+    "simulation_correlation": {
+      "correlation_factor": 8.611e-7,
+      "calibration_method": "hardware_baseline",
+      "configurable": true
+    },
+    "resource_distribution": {
+      "ex_u1_split": {
+        "memory_copy": 0.30,
+        "communication": 0.70,
+        "configurable": true
+      },
+      "fallback_weights": {
+        "compute": 0.4,
+        "memory": 0.3,
+        "communication": 0.3,
+        "configurable": true
+      }
+    }
+  },
+  "multi_gpu_settings": {
+    "configurations": {
+      "8T": {
+        "gpus": 4,
+        "tiles_per_gpu": 2,
+        "description": "4 GPU configuration with 8 tiles"
+      },
+      "16T": {
+        "gpus": 8, 
+        "tiles_per_gpu": 2,
+        "description": "8 GPU configuration with 16 tiles"
+      },
+      "144T": {
+        "gpus": 72,
+        "tiles_per_gpu": 2,
+        "description": "72 GPU configuration with 144 tiles"
+      }
+    },
+    "scaling_efficiency": {
+      "compute_scaling": 0.95,
+      "memory_scaling": 0.90,
+      "communication_overhead": 0.85,
+      "configurable": true
+    }
+  },
+  "output_settings": {
+    "generate_visualizations": true,
+    "export_detailed_results": true,
+    "comparison_tables": true,
+    "performance_summary": true,
+    "output_formats": ["csv", "json", "html"]
+  },
+  "user_preferences": {
+    "preferred_approach": "hybrid_correlation",
+    "show_detailed_breakdown": true,
+    "include_uncertainty_analysis": true,
+    "generate_recommendations": true
+  },
+  "alternative_hardware_scenarios": {
+    "conservative_estimates": {
+      "xecore_compute": 0.5,
+      "hbm_bandwidth": 4.0,
+      "fabrication_process": 0.85,
+      "communication_bandwidth": 8.0,
+      "communication_latency": 100.0
+    },
+    "optimistic_estimates": {
+      "xecore_compute": 0.3,
+      "hbm_bandwidth": 8.0,
+      "fabrication_process": 0.65,
+      "communication_bandwidth": 15.0,
+      "communication_latency": 200.0
+    }
+  }
+}

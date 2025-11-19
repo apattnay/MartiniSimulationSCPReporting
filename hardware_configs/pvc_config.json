@@ -1,0 +1,132 @@
+{
+  "metadata": {
+    "name": "PVC",
+    "description": "no Change",
+    "version": "1.0",
+    "created_date": "2025-11-18T12:19:48.554899",
+    "created_by": "Hardware Config Manager"
+  },
+  "hardware_settings": {
+    "current_hardware": {
+      "name": "PVC",
+      "description": "Default Configurati",
+      "baseline_measurements": {
+        "ttft_ms": 8336.0,
+        "tpot_ms": 53.46,
+        "baseline_frequency": 1600,
+        "tokens_input": 112,
+        "tokens_output": 2
+      }
+    },
+    "future_hardware": {
+      "name": "PVC",
+      "description": "no change",
+      "improvement_factors": {
+        "xecore_compute": {
+          "value": 0.001,
+          "description": "Compute improvement (time ratio - lower is better)",
+          "applies_to": [
+            "compute_tasks"
+          ],
+          "configurable": true
+        },
+        "hbm_bandwidth": {
+          "value": 0.001,
+          "description": "0.01x higher memory bandwidth (throughput multiplier)",
+          "applies_to": [
+            "memory_tasks"
+          ],
+          "configurable": true
+        },
+        "fabrication_process": {
+          "value": 0.001,
+          "description": "Performance gain from process improvement (time ratio)",
+          "applies_to": [
+            "all_tasks"
+          ],
+          "configurable": true
+        },
+        "communication": {
+          "bandwidth_improvement": {
+            "value": 0.001,
+            "description": "0.01x communication bandwidth improvement"
+          },
+          "latency_improvement": {
+            "value": 0.001,
+            "description": "0.01x lower communication latency"
+          },
+          "applies_to": [
+            "communication_tasks"
+          ],
+          "configurable": true
+        }
+      }
+    }
+  },
+  "calculation_settings": {
+    "enabled_approaches": [
+      "hardware_calibrated",
+      "pure_simulation",
+      "hybrid_correlation"
+    ],
+    "execution_options": {
+      "run_single_approach": false,
+      "run_all_approaches": true,
+      "default_single_approach": "hybrid_correlation"
+    },
+    "simulation_correlation": {
+      "correlation_factor": 8.611e-07,
+      "calibration_method": "hardware_baseline",
+      "configurable": true
+    },
+    "resource_distribution": {
+      "ex_u1_split": {
+        "memory_copy": 0.3,
+        "communication": 0.7,
+        "configurable": true
+      },
+      "fallback_weights": {
+        "compute": 0.4,
+        "memory": 0.3,
+        "communication": 0.3,
+        "configurable": true
+      }
+    }
+  },
+  "multi_gpu_settings": {
+    "configurations": {
+      "8T": {
+        "gpus": 4,
+        "tiles_per_gpu": 2,
+        "description": "4 GPU configuration with 8 tiles"
+      },
+      "16T": {
+        "gpus": 8,
+        "tiles_per_gpu": 2,
+        "description": "8 GPU configuration with 16 tiles"
+      },
+      "144T": {
+        "gpus": 72,
+        "tiles_per_gpu": 2,
+        "description": "72 GPU configuration with 144 tiles"
+      }
+    },
+    "scaling_efficiency": {
+      "compute_scaling": 0.95,
+      "memory_scaling": 0.9,
+      "communication_overhead": 0.85,
+      "configurable": true
+    }
+  },
+  "output_settings": {
+    "generate_visualizations": true,
+    "export_detailed_results": true,
+    "comparison_tables": true,
+    "performance_summary": true,
+    "output_formats": [
+      "csv",
+      "json",
+      "html"
+    ]
+  }
+}

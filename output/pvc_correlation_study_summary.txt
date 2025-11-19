@@ -1,0 +1,32 @@
+PVC Hardware-Simulation Correlation Study Summary
+=======================================================
+
+MEASURED PVC PERFORMANCE (1600MHz):
+  TTFT: 8.336 seconds
+  TPOT: 0.05346 seconds
+  Total Time: 8.443 seconds
+  Measured TGS: 13.5024 tokens/second
+
+SIMULATION DATA:
+  Simulation Duration: 3652892.8624999998 units
+  Compute Tasks: 100.0%
+  Memory/Comm Tasks: 0.0%
+  Other GT Tasks: 0.0%
+
+CORRELATION RESULTS:
+  Primary Correlation Factor: 2.3112969139e-06 seconds/unit
+  Calculated TGS from Sim: 13.5024 tok/s
+  Correlation Accuracy: 100.00%
+  Validation: PASS
+
+FREQUENCY VALIDATION:
+  600MHz: 1.90 tok/s (scale: 0.375x)
+  1000MHz: 5.27 tok/s (scale: 0.625x)
+  1600MHz: 13.50 tok/s (scale: 1.000x)
+  2000MHz: 21.10 tok/s (scale: 1.250x)
+
+flowchart LR
+    A[Simulation Duration<br/>9,741,047 units] --> B[×Correlation Factor<br/>2.311e-6 s/unit]
+    B --> C[Predicted Real Time<br/>60.04 seconds]
+    C --> D[÷Total Tokens<br/>114 tokens]
+    D --> E[Predicted TGS<br/>1.90 tok/s]

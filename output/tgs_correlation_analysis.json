@@ -1,0 +1,12 @@
+{
+  "baseline_frequency_mhz": 1600,
+  "measured_tgs": 13.50243754530423,
+  "simulation_derived_tgs": 36.24218119724253,
+  "tgs_correlation_ratio": 0.37256139391333204,
+  "correlation_accuracy_percent": -68.41213725773937,
+  "measured_total_time_sec": 8.44292,
+  "simulation_time_sec": 3.1455060438987497,
+  "simulation_duration_units": 3652892.8625,
+  "correlation_factor_used": 8.611e-07,
+  "correlation_valid": "False"
+}

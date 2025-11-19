@@ -1,0 +1,83 @@
+{
+  "study_info": {
+    "title": "PVC Hardware-Simulation Correlation Study",
+    "baseline_frequency": 1600,
+    "purpose": "Establish correlation between measured PVC performance and simulation results"
+  },
+  "pvc_measurements": {
+    "ttft_ms": 8336,
+    "tpot_ms": 53.46,
+    "baseline_frequency": 1600,
+    "tokens_input": 112,
+    "tokens_output": 2,
+    "total_tokens": 114
+  },
+  "measured_performance": {
+    "ttft_seconds": 8.336,
+    "tpot_seconds": 0.05346,
+    "total_processing_time": 8.44292,
+    "measured_tgs": 13.50243754530423
+  },
+  "correlation_results": {
+    "primary_correlation_factor": 2.311296913926394e-06,
+    "simulation_duration_units": 3652892.8625,
+    "measured_time_seconds": 8.44292,
+    "ttft_correlation_factor": 2.282026961583246e-06,
+    "calculated_tgs_from_sim": 13.50243754530423,
+    "measured_tgs": 13.50243754530423,
+    "tgs_validation_match": "True",
+    "correlation_accuracy": 0.0
+  },
+  "frequency_validation": [
+    {
+      "frequency_mhz": 600,
+      "frequency_str": "600MHz",
+      "sim_duration": 9741047.633185,
+      "predicted_time": 22.51445333299049,
+      "freq_scaled_time": 60.03854222130798,
+      "predicted_tgs": 1.8987802798373214,
+      "freq_scale": 0.375
+    },
+    {
+      "frequency_mhz": 1000,
+      "frequency_str": "1000MHz",
+      "sim_duration": 5844628.58,
+      "predicted_time": 13.508672000000002,
+      "freq_scaled_time": 21.613875200000003,
+      "predicted_tgs": 5.274389666134465,
+      "freq_scale": 0.625
+    },
+    {
+      "frequency_mhz": 1600,
+      "frequency_str": "1600MHz",
+      "sim_duration": 3652892.8625,
+      "predicted_time": 8.44292,
+      "freq_scaled_time": 8.44292,
+      "predicted_tgs": 13.50243754530423,
+      "freq_scale": 1.0
+    },
+    {
+      "frequency_mhz": 2000,
+      "frequency_str": "2000MHz",
+      "sim_duration": 2922314.29,
+      "predicted_time": 6.754336000000001,
+      "freq_scaled_time": 5.403468800000001,
+      "predicted_tgs": 21.09755866453786,
+      "freq_scale": 1.25
+    }
+  ],
+  "workload_breakdown": {
+    "compute_duration": 3651576.759999858,
+    "memory_comm_duration": 1316.102499999985,
+    "other_duration": 0,
+    "total_gt_duration": 3652892.8624998583,
+    "compute_percentage": 99.96397095262466,
+    "memory_comm_percentage": 0.036029047375326244,
+    "other_percentage": 0.0,
+    "task_counts": {
+      "compute_tasks": 230200,
+      "memory_comm_tasks": 4644,
+      "other_tasks": 0
+    }
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "hardware_settings": {
+    "current_hardware": {
+      "name": "PVC",
+      "description": "Ponte Vecchio Current Generation",
+      "baseline_measurements": {
+        "ttft_ms": 8336,
+        "tpot_ms": 53.46,
+        "baseline_frequency": 1600,
+        "tokens_input": 112,
+        "tokens_output": 2
+      }
+    },
+    "future_hardware": {
+      "name": "JGS",
+      "description": "Next Generation Hardware",
+      "improvement_factors": {
+        "xecore_compute": {
+          "value": 0.375,
+          "description": "35-40% faster compute (time ratio)",
+          "applies_to": [
+            "compute_tasks"
+          ]
+        },
+        "hbm_bandwidth": {
+          "value": 6.5,
+          "description": "6-7x higher memory bandwidth",
+          "applies_to": [
+            "memory_tasks"
+          ]
+        },
+        "fabrication_process": {
+          "value": 0.75,
+          "description": "25% performance gain (time ratio)",
+          "applies_to": [
+            "all_tasks"
+          ]
+        },
+        "communication": {
+          "bandwidth_improvement": {
+            "value": 12.5,
+            "description": "12x communication bandwidth"
+          },
+          "latency_improvement": {
+            "value": 150,
+            "description": "150x lower latency"
+          },
+          "applies_to": [
+            "communication_tasks"
+          ]
+        }
+      }
+    }
+  },
+  "calculation_settings": {
+    "enabled_approaches": [
+      "all"
+    ],
+    "default_approach": "hardware_calibrated",
+    "simulation_correlation": {
+      "correlation_factor": 8.611e-07,
+      "calibration_method": "hardware_baseline"
+    },
+    "resource_distribution": {
+      "ex_u1_split": {
+        "memory_copy": 0.3,
+        "communication": 0.7
+      },
+      "fallback_weights": {
+        "compute": 0.4,
+        "memory": 0.3,
+        "communication": 0.3
+      }
+    }
+  },
+  "multi_gpu_settings": {
+    "configurations": {
+      "8T": {
+        "gpus": 4,
+        "tiles_per_gpu": 2
+      },
+      "16T": {
+        "gpus": 8,
+        "tiles_per_gpu": 2
+      },
+      "144T": {
+        "gpus": 72,
+        "tiles_per_gpu": 2
+      }
+    },
+    "scaling_efficiency": {
+      "compute_scaling": 0.95,
+      "memory_scaling": 0.9,
+      "communication_overhead": 0.85
+    }
+  },
+  "output_settings": {
+    "generate_visualizations": true,
+    "export_detailed_results": true,
+    "comparison_tables": true,
+    "performance_summary": true
+  }
+}

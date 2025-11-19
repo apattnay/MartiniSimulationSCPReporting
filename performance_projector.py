@@ -194,7 +194,7 @@ class LLMPerformanceProjector:
         plt.plot(1600, baseline_row['projected_total'], 'ro', markersize=15, 
                 label=f'Baseline (1600MHz: {self.baseline_total}ms)', alpha=0.8)
         
-        plt.title('Performance vs Frequency Trend', fontsize=14, fontweight='bold')
+        plt.title('Performance Latency vs Frequency Trend, (Lower is Better)', fontsize=14, fontweight='bold')
         plt.xlabel('Frequency (MHz)')
         plt.ylabel('Total Performance (ms)')
         plt.legend()
