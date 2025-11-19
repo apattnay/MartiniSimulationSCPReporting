@@ -354,7 +354,7 @@ class HardwareConfigManager:
                     "default_single_approach": "hybrid_correlation"
                 },
                 "simulation_correlation": {
-                    "correlation_factor": 8.611e-7,
+                    "correlation_factor": 2.311296913926394e-06,
                     "calibration_method": "hardware_baseline",
                     "configurable": True
                 },

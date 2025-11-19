@@ -76,7 +76,7 @@ class HardwareProjectionConfig:
                 "enabled_approaches": ["all"],  # Can be specific approaches or "all"
                 "default_approach": "hardware_calibrated",
                 "simulation_correlation": {
-                    "correlation_factor": 8.611e-7,  # seconds per simulation unit
+                    "correlation_factor": 2.311296913926394e-06,  # seconds per simulation unit
                     "calibration_method": "hardware_baseline"
                 },
                 "resource_distribution": {

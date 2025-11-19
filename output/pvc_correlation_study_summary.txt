@@ -24,9 +24,3 @@ FREQUENCY VALIDATION:
   1000MHz: 5.27 tok/s (scale: 0.625x)
   1600MHz: 13.50 tok/s (scale: 1.000x)
   2000MHz: 21.10 tok/s (scale: 1.250x)
-
-flowchart LR
-    A[Simulation Duration<br/>9,741,047 units] --> B[×Correlation Factor<br/>2.311e-6 s/unit]
-    B --> C[Predicted Real Time<br/>60.04 seconds]
-    C --> D[÷Total Tokens<br/>114 tokens]
-    D --> E[Predicted TGS<br/>1.90 tok/s]
