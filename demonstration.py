@@ -31,9 +31,10 @@ def demonstrate_config_manager():
     configs = config_mgr.list_available_configs()
     print(f"Found {len(configs)} configuration(s)")
     
-    for i, config_path in enumerate(configs, 1):
-        config_name = Path(config_path).stem.replace('_config', '').title()
-        print(f"  {i}. {config_name} ({Path(config_path).name})")
+    for i, config_dict in enumerate(configs, 1):
+        config_name = config_dict['name']
+        config_desc = config_dict['description']
+        print(f"  {i}. {config_name}: {config_desc}")
     
     # Show configuration browser (non-interactive demo)
     print(f"\n🌐 Configuration Browser Features:")
